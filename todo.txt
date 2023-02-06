@@ -1,0 +1,18 @@
+class 1:
+
+What is Django
+What is the need of APi
+What is Monolithic
+What is Stateless and Statefull architect
+What is is Api
+Api types
+What is rest
+What is rest api
+Create project
+Setup Project
+difference between get and post method
+What is decorator
+Api decorators
+Serializer
+Model Serializer
+

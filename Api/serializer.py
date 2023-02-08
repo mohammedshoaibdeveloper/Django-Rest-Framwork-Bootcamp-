@@ -23,3 +23,20 @@ class StudentSerializer(serializers.ModelSerializer):
                     raise serializers.ValidationError({'error': 'name cannot be numeric'})
 
         return data
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class BookSerializer(serializers.ModelSerializer):
+
+    category = CategorySerializer()
+    class Meta: 
+        model = Book
+        fields = '__all__'
+        # depth = 1
+        

@@ -15,4 +15,19 @@ What is decorator
 Api decorators
 Serializer
 Model Serializer
+Custom Validation
+
+Class 2 :
+
+difference between put and patch 
+Delete data
+nested serialzer
+ApiView()
+
+
+github link:
+
+https://github.com/mohammedshoaibdeveloper/Django-Rest-Framwork-Bootcamp-
+
+Videos link:
 

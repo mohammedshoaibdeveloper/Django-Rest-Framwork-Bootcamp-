@@ -1,0 +1,90 @@
+Create Token:
+
+Step 1:
+
+add installed app in settings.py
+
+'rest_framework.authtoken'
+
+step 2:
+
+run migrations
+
+step 3:
+
+
+add urls.py in main project:
+
+from rest_framework.authtoken import views
+
+path('api-token-auth/', views.obtain_auth_token),
+
+
+Create Token Manully:
+
+step 1:
+
+View.py code:
+
+
+
+class UserRegistration(APIView):
+
+    def post(self,request):
+
+        serializer = UserSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response({'status':403,'errors':serializer.errors,'message':'something went wrong'})
+
+        serializer.save()
+        user = User.objects.get(username = serializer.data['username'])
+        token_obj , _ = Token.objects.get_or_create(user=user)
+
+    
+
+        return Response({'status':200,'data':serializer.data,'token_obj':str(token_obj),'message':'your data is saved'})
+
+
+
+Step 2:
+
+
+Serilzer.py code:
+
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username','password']
+
+    def create(self,validated_data):
+        
+        user = User.objects.create(username = validated_data['username'])
+        user.set_password(validated_data['password'])  # for encrypted password
+        user.save()
+        return user
+
+Step3 :
+
+urls.py
+
+path('register/',UserRegistration.as_view()),
+
+Step4:
+
+For authentication:
+
+import Views.py
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+add into class:
+
+authentication_classes = [TokenAuthentication]
+permission_classes = [IsAuthenticated]

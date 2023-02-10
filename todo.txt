@@ -25,6 +25,12 @@ nested serialzer
 ApiView()
 
 
+Class 3:
+
+token authentication
+Authorization
+
+
 github link:
 
 https://github.com/mohammedshoaibdeveloper/Django-Rest-Framwork-Bootcamp-

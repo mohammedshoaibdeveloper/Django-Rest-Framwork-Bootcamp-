@@ -10,4 +10,6 @@ urlpatterns = [
     path('delete-student/<int:id>/',delete_student),
     path('get-book/',get_book),
     path('student/',StudentView.as_view()),
+
+    path('register/',UserRegistration.as_view()),
 ]

@@ -31,6 +31,10 @@ token authentication
 Authorization
 
 
+Class 4:
+
+Jwt Authentication
+
 github link:
 
 https://github.com/mohammedshoaibdeveloper/Django-Rest-Framwork-Bootcamp-

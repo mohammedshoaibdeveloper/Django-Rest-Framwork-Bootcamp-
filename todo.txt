@@ -35,9 +35,14 @@ Class 4:
 
 Jwt Authentication
 
+
+Class 5:
+
+AbstractUser
+
 github link:
 
 https://github.com/mohammedshoaibdeveloper/Django-Rest-Framwork-Bootcamp-
 
-Videos link:
+
 

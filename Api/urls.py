@@ -12,4 +12,6 @@ urlpatterns = [
     path('student/',StudentView.as_view()),
 
     path('register/',UserRegistration.as_view()),
+
+    path('user_register/',Register.as_view()),
 ]

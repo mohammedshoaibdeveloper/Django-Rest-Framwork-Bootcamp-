@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import *
@@ -180,9 +180,12 @@ class UserRegistration(APIView):
 
         serializer.save()
         user = User.objects.get(username = serializer.data['username'])
-        # token_obj , _ = Token.objects.get_or_create(user=user)
 
         refresh = RefreshToken.for_user(user)
+        print("------------------------",refresh)
+        return HttpResponse("ok")
+        # token_obj , _ = Token.objects.get_or_create(user=user)
+
 
         return Response({'status':200,
         'data':serializer.data,
@@ -191,3 +194,16 @@ class UserRegistration(APIView):
         'message':'your data is saved'})
 
         # return Response({'status':200,'data':serializer.data,'token_obj':str(token_obj),'message':'your data is saved'})
+
+
+
+class Register(APIView):
+
+    def post(self, request):
+        serializer = CustomeUserSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({'status':403,'errors':serializer.errors,'message':'something went wrong'})
+
+        serializer.save()
+        return Response({'status':200,'message':'Account Created Successfully'})
+

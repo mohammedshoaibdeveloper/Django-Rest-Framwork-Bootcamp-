@@ -1,21 +1,21 @@
 from rest_framework import serializers
 from .models import *
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+# class UserSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = User
-        fields = ['username','password']
+#     class Meta:
+#         model = User
+#         fields = ['username','password']
 
-    def create(self,validated_data):
+#     def create(self,validated_data):
         
-        user = User.objects.create(username = validated_data['username'])
-        user.set_password(validated_data['password'])  # for encrypted password
-        user.save()
-        return user
+#         user = User.objects.create(username = validated_data['username'])
+#         user.set_password(validated_data['password'])  # for encrypted password
+#         user.save()
+#         return user
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -55,4 +55,17 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = '__all__'
         # depth = 1
+
+
+class CustomeUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['email','password','phone']
+
+    def create(self,validated_data):
         
+        user = User.objects.create(email = validated_data['email'],phone = validated_data['phone'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user 
